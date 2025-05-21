@@ -8,9 +8,12 @@ backend:
         - pnpm install --frozen-lockfile --store-dir .pnpm-store # Deterministic install using lockfile
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 
+
+ 
+
 frontend:
   phases:
-    preBuild:
+     preBuild:
       commands:
         - export NODE_OPTIONS=--max-old-space-size=16384
         - sudo dd if=/dev/zero of=swapfile bs=1K count=6M
@@ -18,13 +21,12 @@ frontend:
         - sudo mkswap swapfile
         - sudo swapon swapfile
         - sudo swapon -s
-
-frontend:
-  phases:
-    build:
+     build:
       commands:
         - npm install -g pnpm
         - pnpm run build
+
+        
 
   artifacts:
     baseDirectory: .next
