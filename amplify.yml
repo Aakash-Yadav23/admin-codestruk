@@ -8,41 +8,41 @@ backend:
         - pnpm install --frozen-lockfile
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 
-frontend:
-  phases:
-    preBuild:
-      commands:
-        # Memory optimization for Node.js
-        - export NODE_OPTIONS=--max-old-space-size=8192
+# frontend:
+#   phases:
+#     preBuild:
+#       commands:
+#         # Memory optimization for Node.js
+#         - export NODE_OPTIONS=--max-old-space-size=8192
 
-        # Create 8GB swap in root directory (AL2023 compatible)
-        - sudo fallocate -l 8G /swapfile
-        - sudo chmod 600 /swapfile
-        - sudo mkswap /swapfile
-        - sudo swapon /swapfile
-        - "echo 'Swap status: $(swapon --show)'"   # ⬅️ This is now properly quoted
+#         # Create 8GB swap in root directory (AL2023 compatible)
+#         - sudo fallocate -l 8G /swapfile
+#         - sudo chmod 600 /swapfile
+#         - sudo mkswap /swapfile
+#         - sudo swapon /swapfile
+#         - "echo 'Swap status: $(swapon --show)'"   # ⬅️ This is now properly quoted
 
-        # System memory monitoring
-        - free -h
+#         # System memory monitoring
+#         - free -h
 
-        # Install pnpm (faster than npm)
-        - npm install -g pnpm@8
+#         # Install pnpm (faster than npm)
+#         - npm install -g pnpm@8
 
-    build:
-      commands:
-        # Clean install with cache optimization
-        - pnpm install --frozen-lockfile --prefer-offline
+#     build:
+#       commands:
+#         # Clean install with cache optimization
+#         - pnpm install --frozen-lockfile --prefer-offline
 
-        # Build with Next.js optimizations
-        - pnpm run build --no-lint --no-typecheck
+#         # Build with Next.js optimizations
+#         - pnpm run build --no-lint --no-typecheck
 
-  artifacts:
-    baseDirectory: .next
-    files:
-      - '**/*'
+#   artifacts:
+#     baseDirectory: .next
+#     files:
+#       - '**/*'
 
-  cache:
-    paths:
-      - node_modules/**/*
-      - .next/cache/**/*
-      - .pnpm-store/**/*
+#   cache:
+#     paths:
+#       - node_modules/**/*
+#       - .next/cache/**/*
+#       - .pnpm-store/**/*
