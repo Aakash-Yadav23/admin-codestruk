@@ -9,7 +9,7 @@ frontend:
   phases:
     build:
       commands:
-       - npm install -g pnpm 
+        - npm install -g pnpm 
         - pnpm run build
   artifacts:
     baseDirectory: .next
