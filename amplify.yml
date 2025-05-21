@@ -10,6 +10,17 @@ backend:
 
 frontend:
   phases:
+    preBuild:
+      commands:
+        - export NODE_OPTIONS=--max-old-space-size=16384
+        - sudo dd if=/dev/zero of=swapfile bs=1K count=6M
+        - sudo chmod 600 swapfile
+        - sudo mkswap swapfile
+        - sudo swapon swapfile
+        - sudo swapon -s
+
+frontend:
+  phases:
     build:
       commands:
         - npm install -g pnpm
