@@ -5,6 +5,7 @@ import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/data';
 import type { Schema } from '@/amplify/data/resource';
 import { useState } from 'react';
+import { Mail } from 'lucide-react';
 
 Amplify.configure(outputs);
 const client = generateClient<Schema>();
@@ -33,7 +34,7 @@ const LoginPage = () => {
             htmlFor="email"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
-            Email
+            Email <Mail />
           </label>
           <input
             id="email"
