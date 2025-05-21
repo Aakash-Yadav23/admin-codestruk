@@ -1,4 +1,5 @@
 version: 1
+
 backend:
   phases:
     build:
@@ -13,17 +14,17 @@ frontend:
       commands:
         # Memory optimization for Node.js
         - export NODE_OPTIONS=--max-old-space-size=8192
-        
+
         # Create 8GB swap in root directory (AL2023 compatible)
         - sudo fallocate -l 8G /swapfile
         - sudo chmod 600 /swapfile
         - sudo mkswap /swapfile
         - sudo swapon /swapfile
-        - echo "Swap status: $(swapon --show)"
-        
+        - "echo 'Swap status: $(swapon --show)'"   # ⬅️ This is now properly quoted
+
         # System memory monitoring
         - free -h
-        
+
         # Install pnpm (faster than npm)
         - npm install -g pnpm@8
 
@@ -31,7 +32,7 @@ frontend:
       commands:
         # Clean install with cache optimization
         - pnpm install --frozen-lockfile --prefer-offline
-        
+
         # Build with Next.js optimizations
         - pnpm run build --no-lint --no-typecheck
 
