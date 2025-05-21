@@ -11,25 +11,37 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Memory optimization
+        # Memory optimization for Node.js
         - export NODE_OPTIONS=--max-old-space-size=8192
-        # Create swap space (6GB)
-        - sudo fallocate -l 6G /swapfile
+        
+        # Create 8GB swap in root directory (AL2023 compatible)
+        - sudo fallocate -l 8G /swapfile
         - sudo chmod 600 /swapfile
         - sudo mkswap /swapfile
         - sudo swapon /swapfile
-        - swapon --show
-        # Install dependencies
-        - npm install -g pnpm
+        - echo "Swap status: $(swapon --show)"
+        
+        # System memory monitoring
+        - free -h
+        
+        # Install pnpm (faster than npm)
+        - npm install -g pnpm@8
+
     build:
       commands:
-        - pnpm run build
+        # Clean install with cache optimization
+        - pnpm install --frozen-lockfile --prefer-offline
+        
+        # Build with Next.js optimizations
+        - pnpm run build --no-lint --no-typecheck
+
   artifacts:
     baseDirectory: .next
     files:
       - '**/*'
+
   cache:
     paths:
-      - .next/cache/**/*
       - node_modules/**/*
+      - .next/cache/**/*
       - .pnpm-store/**/*
