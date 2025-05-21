@@ -1,40 +1,35 @@
 version: 1
-
 backend:
   phases:
     build:
       commands:
-        - npm install -g pnpm # Install pnpm globally if not already available
-        - pnpm install --frozen-lockfile --store-dir .pnpm-store # Deterministic install using lockfile
+        - npm install -g pnpm
+        - pnpm install --frozen-lockfile
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
-
-
- 
 
 frontend:
   phases:
-     preBuild:
+    preBuild:
       commands:
-        - export NODE_OPTIONS=--max-old-space-size=16384
-        - sudo dd if=/dev/zero of=swapfile bs=1K count=6M
-        - sudo chmod 600 swapfile
-        - sudo mkswap swapfile
-        - sudo swapon swapfile
-        - sudo swapon -s
-     build:
-      commands:
+        # Memory optimization
+        - export NODE_OPTIONS=--max-old-space-size=8192
+        # Create swap space (6GB)
+        - sudo fallocate -l 6G /swapfile
+        - sudo chmod 600 /swapfile
+        - sudo mkswap /swapfile
+        - sudo swapon /swapfile
+        - swapon --show
+        # Install dependencies
         - npm install -g pnpm
+    build:
+      commands:
         - pnpm run build
-
-        
-
   artifacts:
     baseDirectory: .next
     files:
       - '**/*'
-
   cache:
     paths:
       - .next/cache/**/*
-      - .pnpm-store/**/*   # pnpm store caching
-      - node_modules/.pnpm/**/* # Optional, useful for hoisted modules
+      - node_modules/**/*
+      - .pnpm-store/**/*
