@@ -1,14 +1,13 @@
 'use client';
-import Image from 'next/image';
 import outputs from '@/amplify_outputs.json';
 import { Amplify } from 'aws-amplify';
-import { generateClient } from 'aws-amplify/data';
-import type { Schema } from '@/amplify/data/resource';
+// import { generateClient } from 'aws-amplify/data';
+// import type { Schema } from '@/amplify/data/resource';
 import { useState } from 'react';
 import { Mail } from 'lucide-react';
 
 Amplify.configure(outputs);
-const client = generateClient<Schema>();
+// const client = generateClient<Schema>();
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
