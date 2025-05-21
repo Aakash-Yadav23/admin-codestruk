@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-codestrukadmin-dev-35f4b-unauthRole",
       "StackName": "amplify-codestrukadmin-dev-35f4b",
       "StackId": "arn:aws:cloudformation:ap-south-1:051477906023:stack/amplify-codestrukadmin-dev-35f4b/5cf6ee30-3647-11f0-ab17-06b83532ee1d",
-      "AmplifyAppId": "d128uedqmap9gw"
+      "AmplifyAppId": "d128uedqmap9gw",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-codestrukadmin-dev-35f4b-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
@@ -17,8 +18,16 @@
       },
       "function": {
         "codestrukadmin20d3631dPostConfirmation": {
-          "GROUP": "Admin"
+          "GROUP": "Admin",
+          "deploymentBucketName": "amplify-codestrukadmin-dev-35f4b-deployment",
+          "s3Key": "amplify-builds/codestrukadmin20d3631dPostConfirmation-58307379426f71446772-build.zip"
         }
+      },
+      "api": {
+        "codestrukadmin": {}
+      },
+      "storage": {
+        "codetsruk": {}
       }
     }
   }

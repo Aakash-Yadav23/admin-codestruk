@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Jane Doe",
+    "bio": "Tech enthusiast, writer, and React Native developer.",
+    "email": "jane.doe@example.com",
+    "image": "author/Screenshot_1747597699.png"
+  },
+  {
+    "name": "John Smith",
+    "bio": "Full-stack developer and open-source contributor.",
+    "email": "john.smith@example.com",
+    "image": "author/Screenshot_1747597699.png"
+  },
+  {
+    "name": "Alice Johnson",
+    "bio": "Mobile app designer and UI/UX expert.",
+    "email": "alice.johnson@example.com",
+    "image": "author/Screenshot_1747597699.png"
+  }
+
+]

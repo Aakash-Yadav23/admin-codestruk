@@ -1,6 +1,6 @@
 // components/sidebar/data.ts
 
-import { Home, Newspaper, User } from 'lucide-react';
+import { Home, Newspaper, List, User } from 'lucide-react';
 
 export type SidebarNavItem = {
   name: string;
@@ -15,9 +15,19 @@ export const sidebarNavItems: SidebarNavItem[] = [
     href: '/dashboard',
   },
   {
+    name: 'Featured',
+    icon: List,
+    href: '/dashboard/featured',
+  },
+  {
     name: 'Author',
     icon: User,
     href: '/dashboard/author',
+  },
+  {
+    name: 'Category',
+    icon: List,
+    href: '/dashboard/category',
   },
   {
     name: 'blog',

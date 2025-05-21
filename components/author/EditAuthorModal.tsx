@@ -1,6 +1,6 @@
 // components/author/EditAuthorModal.tsx
 
-"use client";
+'use client';
 
 import {
   Dialog,
@@ -9,11 +9,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { UpdateAuthorInput } from '@/src/API';
 
 type Author = {
   id: string;
@@ -27,16 +28,12 @@ type Props = {
   author: Author;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onSave: (updatedAuthor: Partial<Author>) => void;
+  onSave: (updatedAuthor: UpdateAuthorInput) => void;
 };
 
-export function EditAuthorModal({
-  author,
-  open,
-  onOpenChange,
-  onSave,
-}: Props) {
+export function EditAuthorModal({ author, open, onOpenChange, onSave }: Props) {
   const [formData, setFormData] = useState({
+    id: author.id,
     name: author.name,
     bio: author.bio,
     email: author.email,
@@ -60,7 +57,9 @@ export function EditAuthorModal({
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Edit Author</DialogTitle>
-          <DialogDescription>Update the author details below.</DialogDescription>
+          <DialogDescription>
+            Update the author details below.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="grid gap-4 py-4">

@@ -1,0 +1,247 @@
+[
+  {
+    "name": "React Native",
+    "description": "Learn to build cross-platform mobile apps using React Native.",
+    "image": "https://source.unsplash.com/featured/?react"
+  },
+  {
+    "name": "Web Development",
+    "description": "Explore modern web technologies including HTML, CSS, and JavaScript.",
+    "image": "https://source.unsplash.com/featured/?web"
+  },
+  {
+    "name": "Machine Learning",
+    "description": "Discover the power of machine learning and AI.",
+    "image": "https://source.unsplash.com/featured/?machinelearning"
+  },
+  {
+    "name": "Cloud Computing",
+    "description": "Dive into cloud platforms like AWS, Azure, and GCP.",
+    "image": "https://source.unsplash.com/featured/?cloud"
+  },
+  {
+    "name": "Cybersecurity",
+    "description": "Learn about securing networks, systems, and applications.",
+    "image": "https://source.unsplash.com/featured/?cybersecurity"
+  },
+  {
+    "name": "DevOps",
+    "description": "Master CI/CD pipelines and infrastructure as code.",
+    "image": "https://source.unsplash.com/featured/?devops"
+  },
+  {
+    "name": "Mobile Apps",
+    "description": "Build apps for Android and iOS using various frameworks.",
+    "image": "https://source.unsplash.com/featured/?mobile"
+  },
+  {
+    "name": "Data Science",
+    "description": "Analyze and visualize data using Python and R.",
+    "image": "https://source.unsplash.com/featured/?datascience"
+  },
+  {
+    "name": "UI/UX Design",
+    "description": "Design user-friendly and attractive interfaces.",
+    "image": "https://source.unsplash.com/featured/?ux"
+  },
+  {
+    "name": "Blockchain",
+    "description": "Understand blockchain technology and smart contracts.",
+    "image": "https://source.unsplash.com/featured/?blockchain"
+  },
+  {
+    "name": "Game Development",
+    "description": "Create engaging games with Unity and Unreal Engine.",
+    "image": "https://source.unsplash.com/featured/?gaming"
+  },
+  {
+    "name": "Artificial Intelligence",
+    "description": "Explore AI concepts and build intelligent applications.",
+    "image": "https://source.unsplash.com/featured/?ai"
+  },
+  {
+    "name": "Python Programming",
+    "description": "Learn Python for automation, web, and data applications.",
+    "image": "https://source.unsplash.com/featured/?python"
+  },
+  {
+    "name": "JavaScript Essentials",
+    "description": "Master JavaScript for front-end and back-end development.",
+    "image": "https://source.unsplash.com/featured/?javascript"
+  },
+  {
+    "name": "Next.js",
+    "description": "Develop powerful server-rendered React apps using Next.js.",
+    "image": "https://source.unsplash.com/featured/?nextjs"
+  },
+  {
+    "name": "TypeScript",
+    "description": "Add type safety to your JavaScript with TypeScript.",
+    "image": "https://source.unsplash.com/featured/?typescript"
+  },
+  {
+    "name": "Serverless",
+    "description": "Build scalable apps without managing servers.",
+    "image": "https://source.unsplash.com/featured/?serverless"
+  },
+  {
+    "name": "Firebase",
+    "description": "Integrate authentication, hosting, and real-time databases.",
+    "image": "https://source.unsplash.com/featured/?firebase"
+  },
+  {
+    "name": "GraphQL",
+    "description": "Query your data efficiently with GraphQL APIs.",
+    "image": "https://source.unsplash.com/featured/?graphql"
+  },
+  {
+    "name": "AWS",
+    "description": "Deploy and scale applications with Amazon Web Services.",
+    "image": "https://source.unsplash.com/featured/?aws"
+  },
+  {
+    "name": "Docker",
+    "description": "Containerize your applications with Docker.",
+    "image": "https://source.unsplash.com/featured/?docker"
+  },
+  {
+    "name": "Kubernetes",
+    "description": "Orchestrate containers at scale using Kubernetes.",
+    "image": "https://source.unsplash.com/featured/?kubernetes"
+  },
+  {
+    "name": "PostgreSQL",
+    "description": "Work with advanced SQL databases using PostgreSQL.",
+    "image": "https://source.unsplash.com/featured/?postgresql"
+  },
+  {
+    "name": "MongoDB",
+    "description": "Store and retrieve data using MongoDB NoSQL database.",
+    "image": "https://source.unsplash.com/featured/?mongodb"
+  },
+  {
+    "name": "REST APIs",
+    "description": "Design and build scalable RESTful APIs.",
+    "image": "https://source.unsplash.com/featured/?restapi"
+  },
+  {
+    "name": "Vue.js",
+    "description": "Create fast and flexible UIs using Vue.js.",
+    "image": "https://source.unsplash.com/featured/?vue"
+  },
+  {
+    "name": "Angular",
+    "description": "Develop enterprise apps with Angular.",
+    "image": "https://source.unsplash.com/featured/?angular"
+  },
+  {
+    "name": "HTML & CSS",
+    "description": "Build beautiful layouts using HTML and CSS.",
+    "image": "https://source.unsplash.com/featured/?html"
+  },
+  {
+    "name": "JAMstack",
+    "description": "Learn the modern web architecture with JAMstack.",
+    "image": "https://source.unsplash.com/featured/?jamstack"
+  },
+  {
+    "name": "Testing",
+    "description": "Write reliable tests using Jest and Cypress.",
+    "image": "https://source.unsplash.com/featured/?testing"
+  },
+  {
+    "name": "AI Ethics",
+    "description": "Understand the moral implications of artificial intelligence.",
+    "image": "https://source.unsplash.com/featured/?ethics"
+  },
+  {
+    "name": "Agile Development",
+    "description": "Master agile practices and scrum methodologies.",
+    "image": "https://source.unsplash.com/featured/?agile"
+  },
+  {
+    "name": "Design Systems",
+    "description": "Build consistent UI components and design systems.",
+    "image": "https://source.unsplash.com/featured/?design"
+  },
+  {
+    "name": "Figma",
+    "description": "Design and prototype interfaces with Figma.",
+    "image": "https://source.unsplash.com/featured/?figma"
+  },
+  {
+    "name": "Open Source",
+    "description": "Contribute to and maintain open-source projects.",
+    "image": "https://source.unsplash.com/featured/?opensource"
+  },
+  {
+    "name": "Tech Writing",
+    "description": "Write clear and effective documentation.",
+    "image": "https://source.unsplash.com/featured/?writing"
+  },
+  {
+    "name": "Career Development",
+    "description": "Advance your career in tech with the right guidance.",
+    "image": "https://source.unsplash.com/featured/?career"
+  },
+  {
+    "name": "Product Management",
+    "description": "Manage teams and deliver successful tech products.",
+    "image": "https://source.unsplash.com/featured/?product"
+  },
+  {
+    "name": "APIs",
+    "description": "Build and consume APIs effectively.",
+    "image": "https://source.unsplash.com/featured/?api"
+  },
+  {
+    "name": "Linux",
+    "description": "Master command-line and system administration.",
+    "image": "https://source.unsplash.com/featured/?linux"
+  },
+  {
+    "name": "Networking",
+    "description": "Understand computer networks and protocols.",
+    "image": "https://source.unsplash.com/featured/?networking"
+  },
+  {
+    "name": "IoT",
+    "description": "Build smart devices using Internet of Things.",
+    "image": "https://source.unsplash.com/featured/?iot"
+  },
+  {
+    "name": "AR/VR",
+    "description": "Explore augmented and virtual reality development.",
+    "image": "https://source.unsplash.com/featured/?vr"
+  },
+  {
+    "name": "Accessibility",
+    "description": "Create inclusive and accessible web experiences.",
+    "image": "https://source.unsplash.com/featured/?accessibility"
+  },
+  {
+    "name": "E-Commerce",
+    "description": "Develop powerful online stores and payment systems.",
+    "image": "https://source.unsplash.com/featured/?ecommerce"
+  },
+  {
+    "name": "Remote Work",
+    "description": "Tools and tips for working effectively from anywhere.",
+    "image": "https://source.unsplash.com/featured/?remote"
+  },
+  {
+    "name": "Startup Culture",
+    "description": "Explore lean development and startup strategies.",
+    "image": "https://source.unsplash.com/featured/?startup"
+  },
+  {
+    "name": "Tech News",
+    "description": "Stay up-to-date with the latest tech trends.",
+    "image": "https://source.unsplash.com/featured/?technology"
+  },
+  {
+    "name": "Quantum Computing",
+    "description": "Dive into the future of computing with qubits.",
+    "image": "https://source.unsplash.com/featured/?quantum"
+  }
+]

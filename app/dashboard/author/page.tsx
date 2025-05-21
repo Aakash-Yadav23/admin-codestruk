@@ -1,7 +1,7 @@
 // pages/authors/page.tsx or wherever you list authors
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AuthorCard } from '@/components/author/AuthorCard';
 import { Input } from '@/components/ui/input';
 import {
@@ -12,66 +12,32 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
+import { createAuthorFun } from '@/lib/author';
+import { currentAuthenticatedUser } from '@/lib/aws';
+import { Author } from '@/types/Author';
+import {
+  deleteAuthorFunction,
+  fetchAuthors,
+  updateAuthorFun,
+} from '@/lib/aws/author';
+import awsExports from '@/src/aws-exports';
+import { Amplify } from 'aws-amplify';
+import { CreateAuthorInput, UpdateAuthorInput } from '@/src/API';
+import { toast } from 'sonner';
 
-const sampleAuthors = [
-  {
-    id: '1',
-    name: 'Jane Doe',
-    email: 'jane@example.com',
-    bio: 'A passionate tech writer with over 10 years of experience.',
-    image: 'https://i.pravatar.cc/150?img=32 ',
-  },
-  {
-    id: '2',
-    name: 'John Smith',
-    email: 'john@example.com',
-    bio: 'Full-stack developer and open source contributor.',
-    image: 'https://i.pravatar.cc/150?img=45 ',
-  },
-  {
-    id: '3',
-    name: 'Alice Johnson',
-    email: 'alice@example.com',
-    bio: 'UI/UX designer focused on accessibility and user experience.',
-    image: 'https://i.pravatar.cc/150?img=67 ',
-  },
-  {
-    id: '4',
-    name: 'Bob Anderson',
-    email: 'bob@example.com',
-    bio: 'Cloud architect and AWS Certified Solutions Architect.',
-    image: 'https://i.pravatar.cc/150?img=12 ',
-  },
-  {
-    id: '5',
-    name: 'Charlie Davis',
-    email: 'charlie@example.com',
-    bio: 'Data scientist and machine learning engineer.',
-    image: 'https://i.pravatar.cc/150?img=89 ',
-  },
-  {
-    id: '6',
-    name: 'Dana White',
-    email: 'dana@example.com',
-    bio: 'Editor-in-chief at TechToday Magazine.',
-    image: 'https://i.pravatar.cc/150?img=23 ',
-  },
-  {
-    id: '7',
-    name: 'Ethan Hunt',
-    email: 'ethan@example.com',
-    bio: 'Cybersecurity expert and ethical hacker.',
-    image: 'https://i.pravatar.cc/150?img=11 ',
-  },
-];
+Amplify.configure(awsExports);
 
 export default function AuthorPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [authors, setAuthors] = useState<Author[]>([]);
   const authorsPerPage = 6;
+  const [nextToken, setNextToken] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   // Filter logic
-  const filteredAuthors = sampleAuthors.filter((author) =>
+  const filteredAuthors = authors.filter((author) =>
     author.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -81,6 +47,60 @@ export default function AuthorPage() {
     (currentPage - 1) * authorsPerPage,
     currentPage * authorsPerPage
   );
+
+  const loadAuthors = async () => {
+    if (loading || (!hasMore && authors.length > 0)) return;
+
+    setLoading(true);
+    try {
+      const result = await fetchAuthors(authorsPerPage, nextToken);
+      setAuthors((prev) => [...prev, ...result.authors]);
+      // setNextToken(result.nextToken);
+      if (!result.nextToken) setHasMore(false);
+    } catch (err) {
+      console.error('Failed to load authors');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCreate = async (newData: CreateAuthorInput) => {
+    try {
+      const newFeatured = await createAuthorFun(newData);
+      setAuthors((prev) => [newFeatured, ...prev]);
+      toast.success('Author created successfully.');
+    } catch (error: any) {
+      toast.error('Error creating author.', error.message);
+    }
+  };
+
+  const handleUpdate = async (updatedData: UpdateAuthorInput) => {
+    try {
+      const updatedFeatured = await updateAuthorFun(updatedData);
+      setAuthors((prev) =>
+        prev.map((item) =>
+          item.id === updatedData.id ? { ...item, ...updatedFeatured } : item
+        )
+      );
+      toast.success('Featured updated successfully.');
+    } catch (error: any) {
+      toast.error('Error updating featured.', error.message);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteAuthorFunction(id);
+      setAuthors((prev) => prev.filter((item) => item.id !== id));
+      toast.success('Author deleted successfully.');
+    } catch (error: any) {
+      toast.error('Error deleting author.', error.message);
+    }
+  };
+
+  useEffect(() => {
+    loadAuthors();
+  }, []);
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) return;
@@ -108,7 +128,12 @@ export default function AuthorPage() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {paginatedAuthors.map((author) => (
-            <AuthorCard key={author.id} author={author} />
+            <AuthorCard
+              onDelete={handleDelete}
+              onSave={handleUpdate}
+              key={author.id}
+              author={author}
+            />
           ))}
         </div>
       )}

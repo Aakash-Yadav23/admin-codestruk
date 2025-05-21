@@ -17,53 +17,20 @@ import {
   PaginationContent,
 } from '@/components/ui/pagination';
 import { BlogCard } from '@/components/blog/BlogCard';
-import { Blog } from '@/types/Blog';
+import { Blog, BlogStatus } from '@/src/API';
+import Link from 'next/link';
 
 // Sample data for demo purposes
-const sampleBlogs: Blog[] = [
-  {
-    id: '1',
-    title: 'Mastering TypeScript Generics',
-    excerpt:
-      'Learn how to write flexible and reusable code using TypeScript generics.',
-    slug: 'typescript-generics',
-    image: 'https://picsum.photos/id/10/200/300 ',
-    publishedAt: '2024-10-01T08:00:00Z',
-    readTime: 7,
-    status: 'PUBLISHED',
-    category: 'Development',
-  },
-  {
-    id: '2',
-    title: 'Getting Started with AWS Amplify',
-    excerpt:
-      'A beginner-friendly guide to building scalable apps with Amplify.',
-    slug: 'aws-amplify-guide',
-    publishedAt: '2024-10-05T10:00:00Z',
-    readTime: 9,
-    status: 'DRAFT',
-    category: 'Cloud',
-  },
-  {
-    id: '3',
-    title: 'The Future of Web Development in 2025',
-    excerpt: 'Explore upcoming trends and technologies shaping the web.',
-    slug: 'web-dev-2025',
-    publishedAt: '2024-10-07T12:00:00Z',
-    readTime: 5,
-    status: 'ARCHIVED',
-    category: 'Trends',
-  },
-];
 
 export default function BlogsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const blogsPerPage = 6;
 
   // Filter logic
-  const filteredBlogs = sampleBlogs.filter((blog) => {
+  const filteredBlogs = blogs.filter((blog) => {
     const matchesSearch = blog.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
@@ -106,7 +73,9 @@ export default function BlogsPage() {
           </SelectContent>
         </Select>
 
-        <Button onClick={() => alert('Add new blog')}>+ New Blog</Button>
+        <Button>
+          <Link href="/dashboard/blog/new">+ New Blog</Link>
+        </Button>
       </div>
 
       {/* Results */}

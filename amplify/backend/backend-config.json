@@ -1,10 +1,25 @@
 {
   "api": {
     "codestrukadmin": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "codestrukadmin20d3631d"
+        }
+      ],
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [],
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authcodestrukadmin20d3631d"
+              }
+            }
+          ],
           "defaultAuthentication": {
             "apiKeyConfig": {
               "apiKeyExpirationDays": 7
@@ -70,6 +85,29 @@
           "resourceName": "codestrukadmin20d3631dPostConfirmation"
         }
       ]
+    },
+    "AMPLIFY_function_codestrukadmin20d3631dPostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "codestrukadmin20d3631dPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_codestrukadmin20d3631dPostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "codestrukadmin20d3631dPostConfirmation"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "codetsruk": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }

@@ -1,0 +1,16 @@
+{
+  "resourceName": "codetsruk",
+  "policyUUID": "f982a2d8",
+  "bucketName": "codestruk-app",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

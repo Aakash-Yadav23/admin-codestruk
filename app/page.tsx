@@ -1,21 +1,35 @@
 'use client';
-import outputs from '@/amplify_outputs.json';
-import { Amplify } from 'aws-amplify';
-// import { generateClient } from 'aws-amplify/data';
-// import type { Schema } from '@/amplify/data/resource';
-import { useState } from 'react';
-import { Mail } from 'lucide-react';
 
-Amplify.configure(outputs);
-// const client = generateClient<Schema>();
+import { useEffect, useState } from 'react';
+import { Mail } from 'lucide-react';
+import { currentAuthenticatedUser, handleSignIn } from '@/lib/aws';
+import { createAuthorFun } from '@/lib/author';
+import { Amplify } from 'aws-amplify';
+import awsExports from '@/src/aws-exports';
+
+Amplify.configure(awsExports);
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('aakashdev24@gmail.com'); // Example email
+  const [password, setPassword] = useState('12345678');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password });
+    setLoading(true);
+    setError('');
+
+    try {
+      const user = await handleSignIn({ username: email, password });
+      console.log('Logged in user:', user);
+      // TODO: Redirect or update state accordingly
+    } catch (err: any) {
+      console.error('Error signing in:', err);
+      setError(err.message || 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -28,16 +42,20 @@ const LoginPage = () => {
           Login
         </h2>
 
+        {error && (
+          <p className="text-red-600 text-sm mb-4 text-center">{error}</p>
+        )}
+
         <div className="mb-4">
           <label
             htmlFor="email"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
-            Email <Mail />
+            Email
           </label>
           <input
             id="email"
-            type="email"
+            type="text"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -64,9 +82,10 @@ const LoginPage = () => {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+          disabled={loading}
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
         >
-          Sign In
+          {loading ? 'Signing In...' : 'Sign In'}
         </button>
       </form>
     </div>
